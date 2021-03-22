@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0-10/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<style>
+    html{
+        background-color: rgb(65,105,225);
+    }
+    .outsideBox{
+        position: absolute;;
+        top: 10%;
+        left: 30%;
+        border: 2px solid black;
+        width: 30%;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(244,164,96);
+        box-shadow: 5px 10px 18px 15px #d69d53;
+    }
+    .innerBox{
+        border: 2px solid black;
+        position: relative;
+        width: 80%;
+        height: 400px;
+        /* overflow: hidden;   */
+        background-color: rgb(127,255,212);
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+    }
+    .tweetme{
+        float: right;
+    }
+    .tweetme:hover{
+        animation: rotate 1s linear 0s 2 alternate-reverse none;
+    }
+    @keyframes rotate{
+        from{transform: rotateZ(0deg);}
+        to{transform: rotateZ(360deg);}
+    }
+    button{
+        position: relative;
+        top: 55%;
+        font-size: 120%;
+        width: 90%;
+        left: 5%;
+        background-color: silver;
+    }
+    .content{
+        position: relative;
+        font-family:'Dancing Script', cursive ;
+        top: 17%;
+        left: 10%;
+        width: 90%;
+        font-size: 200%;
+
+    }
+    .author{
+        position: relative;
+        width: 60%;
+        top: 25%;
+        left: 40%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 120%;
+    }
+</style>
+<body>
+   <div class="outsideBox">
+       <div class="innerBox">
+            <div class="tweetme">
+                <i class='fab fa-twitter fa-4x'  aria-hidden='true' style='color:rgb(29, 161 ,242)';></i>
+            </div>
+            <div class="content"></div> 
+            <div class="author"></div> 
+            <button class="newQuote">New Quote</button>
+       </div>
+   </div> 
+   <script>
+       let quotes=""
+       const content=document.querySelector(".content")
+       const tweetme=document.querySelector(".tweetme")
+       const author=document.querySelector(".author")
+       const newQuote=document.querySelector(".newQuote")
+       const url="https://type.fit/api/quotes"
+       let tweetValue=''
+       let tweetAuthor=''
+       function printQuote(){
+            const rand=Math.floor(Math.random()*100)
+            console.log(rand)
+            content.innerHTML=`"${quotes[rand].text}"`
+            tweetValue=quotes[rand].text
+            tweetAuthor=quotes[rand].author
+            quotes[rand].author==null?author.innerHTML=`By Unknown`
+            :author.innerHTML=`By ${quotes[rand].author}`
+
+       }
+       function textTweet(){
+           let tweetPost=`https://twitter.com/intent/tweet?text="${tweetValue} BY ${tweetAuthor}"`
+           window.open(tweetPost)
+       }
+       async function getQuotes(){
+           try {
+               const response=await fetch(url)
+               const data=await response.json()
+               quotes=data
+               printQuote()
+                
+           } catch (error) {
+               console.log(error)
+           }
+       }
+       newQuote.addEventListener("click",getQuotes)
+       tweetme.addEventListener("click",textTweet)
+       getQuotes()
+   </script>
+</body>
+</html>
