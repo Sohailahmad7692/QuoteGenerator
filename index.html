@@ -13,7 +13,7 @@
         background-color: rgb(65,105,225);
     }
     .outsideBox{
-        position: absolute;;
+        position: absolute;
         top: 10%;
         left: 30%;
         border: 2px solid black;
@@ -47,36 +47,80 @@
         to{transform: rotateZ(360deg);}
     }
     button{
-        position: relative;
-        top: 55%;
+        position: absolute;
+        top: 90%;
         font-size: 120%;
         width: 90%;
         left: 5%;
         background-color: silver;
     }
     .content{
-        position: relative;
+        position: absolute;
         font-family:'Dancing Script', cursive ;
-        top: 17%;
+        top: 20%;
         left: 10%;
         width: 90%;
         font-size: 200%;
 
     }
     .author{
-        position: relative;
+        position: absolute;
         width: 60%;
-        top: 25%;
-        left: 40%;
+        top: 70%;
+        left: 30%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 120%;
     }
+    @media screen and (max-width: 960px) {
+  .outsideBox {
+    height: 400px;
+    width: 60%;
+    left: 20%;
+  }
+  .innerBox{
+      height: 300px;
+      width: 80%;
+  }
+  .content{
+      font-size: 160%;
+  }
+  .author{
+
+      font-size: 80%;
+  }
+  button{
+      width: 70%;
+      font-size: 100%;
+  }
+}
+    @media screen and (max-width: 600px) {
+  .outsideBox {
+    height: 400px;
+    width: 60%;
+    left: 20%;
+  }
+  .innerBox{
+      height: 300px;
+      width: 80%;
+  }
+  .content{
+      font-size: 160%;
+  }
+  .author{
+
+      font-size: 80%;
+  }
+  button{
+      width: 70%;
+      font-size: 100%;
+  }
+}
 </style>
 <body>
    <div class="outsideBox">
        <div class="innerBox">
             <div class="tweetme">
-                <i class='fab fa-twitter fa-4x'  aria-hidden='true' style='color:rgb(29, 161 ,242)';></i>
+                <i class='fab fa-twitter fa-3x'  aria-hidden='true' style='color:rgb(29, 161 ,242)';></i>
             </div>
             <div class="content"></div> 
             <div class="author"></div> 
